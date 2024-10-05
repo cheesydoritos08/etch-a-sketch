@@ -1,3 +1,16 @@
-.hover {
-    justify-content:
+body  {
+    height: 98lvh;
+    background-color: rgb(235, 218, 250);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 100px;
+    font-family:'Orbitron', 'Courier New', Courier, monospace
+}
+
+button {
+    border-radius: 20px;
+    border: 3px solid rgb(166, 116, 185);
+    background-color: rgb(222, 180, 241);
+    font-family:'Orbitron', 'Courier New', Courier, monospace
 }
