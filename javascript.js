@@ -1,26 +1,44 @@
 let GridContainer = document.createElement("div")
-GridContainer.setAttribute("style", "display: flex")
 let NewColumn
+GridContainer.setAttribute("style", " display: flex; width: 500px; height: 510px; background: grey; flex-direction: column; ")
+
 document.body.appendChild(GridContainer)
 
-for (let i = 0; i < 256; i++){
+function CreateGrid(length = 16 ){
+    let NumberOfDivs = length * length
+for (let i = 0; i < NumberOfDivs; i++){
     let NewDiv = document.createElement("div")
-    NewDiv.setAttribute("style", "background: red; height: 10px; width: 10px; border: 2px solid black;")
-    
-    if (i%16 == 0){
+    NewDiv.setAttribute("style", `background: red; border: 2px solid green; height: 100%; flex: 1;`)
+    NewDiv.classList.add("color-box")
+    if (i%length == 0){
         NewColumn = document.createElement("div")
         NewColumn.setAttribute("class", "column")
         GridContainer.appendChild(NewColumn)
         NewColumn.appendChild(NewDiv)
-        NewColumn.setAttribute("style", "border: 2px dotted blue")
-        console.log("new colum ran")
+        NewColumn.setAttribute("style", "flex: 1; display: flex;  ")
     } else {
         NewColumn.appendChild(NewDiv)
-        console.log("old colum ran")
-
     }
+}
+}
 
+function GenerateRandomColor(){
+    let MaxColorVal = 0xFFFFFF // Max hexadecimal value
+    let RandomColor = Math.floor(Math.random() * MaxColorVal)
+    RandomColor = RandomColor.toString(16)
+    RandomColor.padStart(6,0)
 
-
+    return `#${RandomColor.toUpperCase()}`
 
 }
+
+GridContainer.addEventListener("mouseover", function(e){
+    let target = e.target
+    console.log(target)
+    if (target.getAttribute("class") == "color-box"){
+        let Color = GenerateRandomColor()
+        target.style.backgroundColor = Color
+    }
+})
+
+CreateGrid(30)
